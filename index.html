@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TBVH — Hackathon Deck</title>
+  <title>TBVH: Hackathon Deck</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -215,7 +215,7 @@
     AI agents negotiate inside a TEE. Cryptographic proofs replace trust.<br>
     On-chain escrow enforces the deal.
   </p>
-  <p class="citation">Production implementation of the NDAI paper — Stephenson, Miller, Sun, Annem, Parikh (2025)</p>
+  <p class="citation">Production implementation of the NDAI paper by Stephenson, Miller, Sun, Annem, Parikh (2025)</p>
 </div>
 
 <!-- Slide 2: Problem + Paper -->
@@ -225,7 +225,7 @@
   <div class="steps">
     <div class="step">
       <span class="step-num">→</span>
-      <div class="step-text">You can't evaluate information without seeing it. Once you've seen it, why pay? This is <strong>Arrow's Information Paradox</strong> (1962) — unsolved for 60 years.</div>
+      <div class="step-text">You can't evaluate information without seeing it. Once you've seen it, why pay? This is <strong>Arrow's Information Paradox</strong> (1962), unsolved for 60 years.</div>
     </div>
     <div class="step">
       <span class="step-num">→</span>
@@ -253,11 +253,11 @@
     </div>
     <div class="step">
       <span class="step-num">02</span>
-      <div class="step-text"><strong>Agents negotiate inside the TEE.</strong> Each side has an AI agent. They negotiate inside a Phala Cloud CVM (Intel TDX) — hardware-isolated memory that nobody can read. Neither human sees the conversation. The buyer only learns: accept or reject, at what price.</div>
+      <div class="step-text"><strong>Agents negotiate inside the TEE.</strong> Each side has an AI agent. They negotiate inside a Phala Cloud CVM (Intel TDX), hardware-isolated memory that nobody can read. Neither human sees the conversation. The buyer only learns: accept or reject, at what price.</div>
     </div>
     <div class="step">
       <span class="step-num">03</span>
-      <div class="step-text"><strong>Settle on-chain.</strong> If accepted, the buyer deposits USDC into an escrow contract. The TEE verifies the deposit, signs the outcome (EIP-712), and reveals the seller's information. The seller claims payment with the TEE signature. If rejected, information is wiped — the buyer never sees it.</div>
+      <div class="step-text"><strong>Settle on-chain.</strong> If accepted, the buyer deposits USDC into an escrow contract. The TEE verifies the deposit, signs the outcome (EIP-712), and reveals the seller's information. The seller claims payment with the TEE signature. If rejected, information is wiped and the buyer never sees it.</div>
     </div>
   </div>
 </div>
@@ -275,7 +275,7 @@
         </div>
         <div class="step">
           <span class="step-num">→</span>
-          <div class="step-text">TBVH's answer: <strong>verifiable proof types</strong> that the TEE validates independently — not claims from the seller, but system-verified evidence.</div>
+          <div class="step-text">TBVH's answer: <strong>verifiable proof types</strong> that the TEE validates independently. Not claims from the seller, but system-verified evidence.</div>
         </div>
         <div class="step">
           <span class="step-num">→</span>
@@ -286,7 +286,7 @@
     <div>
       <div class="card">
         <h3 style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #2dd4bf; margin-bottom: 12px;">Today: DKIM Email Verification</h3>
-        <p style="font-size: 13px; color: #a1a1aa; line-height: 1.6; margin-bottom: 12px;">Sellers attach <span class="mono">.eml</span> files. The TEE verifies the cryptographic DKIM signature — confirming the email is genuine and unmodified.</p>
+        <p style="font-size: 13px; color: #a1a1aa; line-height: 1.6; margin-bottom: 12px;">Sellers attach <span class="mono">.eml</span> files. The TEE verifies the cryptographic DKIM signature, confirming the email is genuine and unmodified.</p>
         <p style="font-size: 13px; color: #a1a1aa; line-height: 1.6;">Both agents see the verified content. After the deal, email content is wiped from the TEE.</p>
       </div>
       <div class="card">
@@ -310,7 +310,7 @@
         </div>
         <div class="step">
           <span class="step-num">→</span>
-          <div class="step-text"><strong>EIP-712 typed signatures</strong> — the escrow only trusts the TEE signer. Key is derived from hardware, bound to the CVM identity.</div>
+          <div class="step-text"><strong>EIP-712 typed signatures.</strong> The escrow only trusts the TEE signer. Key is derived from hardware, bound to the CVM identity.</div>
         </div>
         <div class="step">
           <span class="step-num">→</span>
@@ -331,7 +331,7 @@
           </div>
           <div class="path-card">
             <h3>refund()</h3>
-            <p>7-day timeout fallback — no signature needed. Funds are never locked permanently.</p>
+            <p>7-day timeout fallback. No signature needed. Funds are never locked permanently.</p>
           </div>
         </div>
       </div>
@@ -342,17 +342,17 @@
 <!-- Slide 6: tbvh-cli -->
 <div class="slide" id="s6">
   <div class="label">CLI</div>
-  <h2>tbvh-cli — Agents Talking to Agents</h2>
+  <h2>tbvh-cli: Agents Talking to Agents</h2>
   <div class="two-col">
     <div>
       <div class="steps">
         <div class="step">
           <span class="step-num">→</span>
-          <div class="step-text"><strong>No frontend needed.</strong> Full CLI client using bash, curl, and Foundry's cast. Designed for maximum security — frontends can be compromised.</div>
+          <div class="step-text"><strong>No frontend needed.</strong> Full CLI client using bash, curl, and Foundry's cast. Designed for maximum security because frontends can be compromised.</div>
         </div>
         <div class="step">
           <span class="step-num">→</span>
-          <div class="step-text"><strong>Programmatic access.</strong> Other AI agents can use tbvh-cli as a tool — enabling agents buying information from agents, autonomously.</div>
+          <div class="step-text"><strong>Programmatic access.</strong> Other AI agents can use tbvh-cli as a tool, enabling agents buying information from agents autonomously.</div>
         </div>
         <div class="step">
           <span class="step-num">→</span>
@@ -408,7 +408,7 @@
   <div class="bullets">
     <div class="bullet">
       <div class="bullet-dot"></div>
-      <div class="bullet-text"><strong>Key derivation.</strong> Phala's TEE signer is bound to the CVM's app_id, not the Docker image hash. In-place code updates don't rotate keys — only full reprovisioning does. The DStack docs and practical behavior diverge here.</div>
+      <div class="bullet-text"><strong>Key derivation.</strong> Phala's TEE signer is bound to the CVM's app_id, not the Docker image hash. In-place code updates don't rotate keys. Only full reprovisioning does. The DStack docs and practical behavior diverge here.</div>
     </div>
     <div class="bullet">
       <div class="bullet-dot"></div>
@@ -428,19 +428,19 @@
   <div class="bullets">
     <div class="bullet">
       <div class="bullet-dot"></div>
-      <div class="bullet-text"><strong>zkTLS proof type</strong> — verify web content (API responses, web pages) without trusting the seller. Extends the proof system beyond email.</div>
+      <div class="bullet-text"><strong>zkTLS proof type.</strong> Verify web content (API responses, web pages) without trusting the seller. Extends the proof system beyond email.</div>
     </div>
     <div class="bullet">
       <div class="bullet-dot"></div>
-      <div class="bullet-text"><strong>Production escrow on mainnet</strong> — deploy to Base mainnet with real USDC. The same contracts, real money.</div>
+      <div class="bullet-text"><strong>Production escrow on mainnet.</strong> Deploy to Base mainnet with real USDC. The same contracts, real money.</div>
     </div>
     <div class="bullet">
       <div class="bullet-dot"></div>
-      <div class="bullet-text"><strong>Attestation-based signer rotation</strong> — replace the owner-gated <span class="mono">setTeeSigner()</span> with on-chain verification that the new signer is backed by a valid TEE attestation.</div>
+      <div class="bullet-text"><strong>Attestation-based signer rotation.</strong> Replace the owner-gated <span class="mono">setTeeSigner()</span> with on-chain verification that the new signer is backed by a valid TEE attestation.</div>
     </div>
     <div class="bullet">
       <div class="bullet-dot"></div>
-      <div class="bullet-text"><strong>Multi-model support</strong> — let buyers and sellers choose the AI model for their agents.</div>
+      <div class="bullet-text"><strong>Multi-model support.</strong> Let buyers and sellers choose the AI model for their agents.</div>
     </div>
   </div>
 </div>
