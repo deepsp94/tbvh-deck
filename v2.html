@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TBVH: Hackathon Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: #09090b;
+      background-image: radial-gradient(circle at 50% 0%, #14b8a608 0%, transparent 50%);
+      color: #f4f4f5;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .slide {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 80px;
+      height: 100vh;
+      width: 100vw;
+      animation: fadeIn 0.3s ease-out;
+    }
+    .slide.active { display: flex; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .counter {
+      position: fixed;
+      bottom: 24px;
+      right: 32px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: #52525b;
+    }
+
+    .nav-hint {
+      position: fixed;
+      bottom: 24px;
+      left: 32px;
+      font-size: 12px;
+      color: #3f3f46;
+    }
+
+    h1 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 52px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      color: #f4f4f5;
+    }
+
+    .label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #52525b;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: #2dd4bf;
+      font-weight: 500;
+      margin-bottom: 40px;
+    }
+
+    .tagline {
+      font-size: 16px;
+      color: #a1a1aa;
+      line-height: 1.7;
+      max-width: 720px;
+    }
+
+    .teal { color: #2dd4bf; }
+    .dim { color: #71717a; }
+    .mono { font-family: 'IBM Plex Mono', monospace; }
+
+    .card {
+      background: #111113;
+      border: 1px solid #27272a80;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .steps { display: flex; flex-direction: column; gap: 18px; max-width: 760px; }
+    .step { display: flex; gap: 16px; align-items: flex-start; }
+    .step-num {
+      font-family: 'IBM Plex Mono', monospace;
+      color: #2dd4bf;
+      font-size: 14px;
+      font-weight: 500;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-text { color: #a1a1aa; font-size: 15px; line-height: 1.7; }
+    .step-text strong { color: #f4f4f5; font-weight: 500; }
+
+    .bullets { display: flex; flex-direction: column; gap: 14px; max-width: 760px; }
+    .bullet { display: flex; gap: 12px; align-items: flex-start; }
+    .bullet-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #2dd4bf;
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+    .bullet-text { color: #a1a1aa; font-size: 15px; line-height: 1.6; }
+    .bullet-text strong { color: #f4f4f5; font-weight: 500; }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 700px;
+      font-size: 14px;
+    }
+    th {
+      text-align: left;
+      padding: 10px 16px;
+      color: #52525b;
+      font-weight: 500;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #27272a;
+    }
+    td {
+      padding: 10px 16px;
+      color: #a1a1aa;
+      border-bottom: 1px solid #27272a40;
+    }
+    tr:nth-child(even) td { background: #111113; }
+    td:first-child {
+      font-family: 'IBM Plex Mono', monospace;
+      color: #f4f4f5;
+      font-weight: 500;
+    }
+
+    .path-card {
+      background: #111113;
+      border: 1px solid #27272a80;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .path-card h3 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      color: #2dd4bf;
+      margin-bottom: 8px;
+    }
+    .path-card p {
+      font-size: 13px;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+
+    .code {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      background: #111113;
+      border-left: 2px solid #2dd4bf30;
+      border-radius: 8px;
+      padding: 16px 20px;
+      color: #a1a1aa;
+      max-width: 700px;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .two-col { display: flex; gap: 40px; }
+    .two-col > div { flex: 1; }
+
+    .citation {
+      font-size: 12px;
+      color: #52525b;
+      font-style: italic;
+      margin-top: 20px;
+    }
+
+    /* Demo slide */
+    .demo-slide {
+      justify-content: flex-start;
+      padding-top: 48px;
+      overflow: hidden;
+    }
+    .demo-strip {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #27272a #09090b;
+    }
+    .demo-strip::-webkit-scrollbar { height: 4px; }
+    .demo-strip::-webkit-scrollbar-track { background: #09090b; }
+    .demo-strip::-webkit-scrollbar-thumb { background: #27272a; border-radius: 2px; }
+    .demo-item {
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .demo-item img {
+      height: calc(100vh - 200px);
+      max-height: 560px;
+      width: auto;
+      border-radius: 8px;
+      border: 1px solid #27272a80;
+      display: block;
+    }
+    .demo-caption {
+      font-size: 11px;
+      color: #52525b;
+      font-family: 'IBM Plex Mono', monospace;
+      text-align: center;
+    }
+
+    /* ── Flowchart ── */
+    .flow-stage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      width: 100%;
+      max-width: 900px;
+      margin-top: 8px;
+    }
+
+    .flow-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .flow-box {
+      border-radius: 12px;
+      padding: 18px 22px;
+      text-align: center;
+      min-width: 160px;
+    }
+
+    .flow-box.person {
+      background: #111113;
+      border: 1px solid #27272a;
+    }
+
+    .flow-box.tee {
+      background: #0d2420;
+      border: 1.5px solid #2dd4bf40;
+      min-width: 260px;
+      padding: 20px 24px;
+    }
+
+    .flow-box-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #52525b;
+      margin-bottom: 6px;
+    }
+
+    .flow-box-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #f4f4f5;
+      margin-bottom: 4px;
+    }
+
+    .flow-box-desc {
+      font-size: 12px;
+      color: #71717a;
+      line-height: 1.5;
+    }
+
+    .flow-box.tee .flow-box-label {
+      color: #2dd4bf80;
+    }
+
+    .flow-box.tee .flow-box-title {
+      color: #2dd4bf;
+    }
+
+    .tee-inner {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+      justify-content: center;
+    }
+
+    .tee-chip {
+      background: #111113;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-family: 'IBM Plex Mono', monospace;
+      color: #52525b;
+      text-align: center;
+    }
+
+    .tee-chip.active {
+      border-color: #2dd4bf30;
+      color: #a1a1aa;
+    }
+
+    /* arrows between nodes */
+    .flow-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 0 12px;
+      flex-shrink: 0;
+    }
+
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .flow-arrow-line {
+      height: 1px;
+      width: 40px;
+      background: #27272a;
+    }
+
+    .flow-arrow-line.blocked {
+      background: #3f1010;
+      background: repeating-linear-gradient(90deg, #3f1515 0px, #3f1515 6px, transparent 6px, transparent 10px);
+    }
+
+    .flow-arrow-line.active {
+      background: #2dd4bf40;
+    }
+
+    .flow-arrow-head {
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 7px solid #27272a;
+    }
+
+    .flow-arrow-head.blocked {
+      border-left-color: #3f1515;
+    }
+
+    .flow-arrow-head.active {
+      border-left-color: #2dd4bf60;
+    }
+
+    .flow-arrow-label {
+      font-size: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      color: #3f3f46;
+      white-space: nowrap;
+    }
+
+    .flow-arrow-label.blocked {
+      color: #7f1d1d80;
+    }
+
+    .flow-arrow-label.active {
+      color: #2dd4bf60;
+    }
+
+    .flow-node-caption {
+      font-size: 12px;
+      color: #52525b;
+      text-align: center;
+      max-width: 180px;
+      line-height: 1.5;
+    }
+
+    .blocked-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #7f1d1d20;
+      border: 1px solid #7f1d1d40;
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-family: 'IBM Plex Mono', monospace;
+      color: #ef4444;
+      margin-top: 4px;
+    }
+
+    .ok-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #14532d20;
+      border: 1px solid #16a34a40;
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-family: 'IBM Plex Mono', monospace;
+      color: #4ade80;
+      margin-top: 4px;
+    }
+
+    .flow-caption {
+      margin-top: 32px;
+      max-width: 800px;
+    }
+
+    .flow-caption p {
+      font-size: 14px;
+      color: #71717a;
+      line-height: 1.7;
+    }
+
+    .flow-caption p + p {
+      margin-top: 10px;
+    }
+
+    .flow-caption strong {
+      color: #a1a1aa;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide active" id="s1">
+  <div class="label">NDAI Hackathon · 2025</div>
+  <h1><span class="teal">TBVH</span></h1>
+  <p class="subtitle">To Be Verifiably Honest</p>
+  <p class="tagline">A working implementation of the NDAI paper's proof that TEEs and AI agents solve Arrow's Information Paradox — trustless trade in private information, settled on-chain.</p>
+</div>
+
+<!-- Slide 2: The Problem -->
+<div class="slide" id="s2">
+  <div class="label">The Problem</div>
+  <h2>A trade that can't happen</h2>
+
+  <div class="flow-stage">
+    <!-- Seller -->
+    <div class="flow-node">
+      <div class="flow-box person">
+        <div class="flow-box-label">Seller</div>
+        <div class="flow-box-title">OpenAI insider</div>
+        <div class="flow-box-desc">Has documented evidence that the company failed to delete user data it committed to deleting</div>
+      </div>
+      <div class="blocked-badge">can't reveal publicly</div>
+    </div>
+
+    <!-- Arrow: blocked -->
+    <div class="flow-connector">
+      <div class="flow-arrow">
+        <div class="flow-arrow-line blocked"></div>
+        <div class="flow-arrow-head blocked"></div>
+      </div>
+      <div class="flow-arrow-label blocked">Arrow's paradox</div>
+    </div>
+
+    <!-- Buyer -->
+    <div class="flow-node">
+      <div class="flow-box person">
+        <div class="flow-box-label">Buyer</div>
+        <div class="flow-box-title">Prediction market trader</div>
+        <div class="flow-box-desc">Open position on an OpenAI data-compliance question. Will pay well for verified information</div>
+      </div>
+      <div class="blocked-badge">can't pay for what they've seen</div>
+    </div>
+  </div>
+
+  <div class="flow-caption">
+    <p>If the seller reveals the information publicly, it becomes worthless — anyone can see it, there's no reason to pay. But the buyer can't evaluate the information without seeing it, and once they've seen it, there's no reason to pay.</p>
+    <p>This is <strong>Arrow's Information Paradox (1962)</strong>. The trade never happens, even though both sides would benefit.</p>
+  </div>
+</div>
+
+<!-- Slide 3: The TEE -->
+<div class="slide" id="s3">
+  <div class="label">The Solution</div>
+  <h2>A sealed room in the middle</h2>
+
+  <div class="flow-stage" style="gap: 0;">
+    <!-- Seller -->
+    <div class="flow-node">
+      <div class="flow-box person">
+        <div class="flow-box-label">Seller</div>
+        <div class="flow-box-title">OpenAI insider</div>
+        <div class="flow-box-desc">Commits encrypted information + DKIM proof</div>
+      </div>
+    </div>
+
+    <!-- Arrow: seller → TEE -->
+    <div class="flow-connector">
+      <div class="flow-arrow">
+        <div class="flow-arrow-line active"></div>
+        <div class="flow-arrow-head active"></div>
+      </div>
+      <div class="flow-arrow-label active">encrypted commit</div>
+    </div>
+
+    <!-- TEE -->
+    <div class="flow-node">
+      <div class="flow-box tee">
+        <div class="flow-box-label">Phala Cloud CVM · Intel TDX</div>
+        <div class="flow-box-title">Trusted Execution Environment</div>
+        <div class="tee-inner">
+          <div class="tee-chip active">Seller Agent</div>
+          <div class="tee-chip active">Buyer Agent</div>
+          <div class="tee-chip active">Escrow</div>
+        </div>
+      </div>
+      <div class="ok-badge">hardware-isolated · attestable</div>
+    </div>
+
+    <!-- Arrow: TEE → buyer -->
+    <div class="flow-connector">
+      <div class="flow-arrow">
+        <div class="flow-arrow-line active"></div>
+        <div class="flow-arrow-head active"></div>
+      </div>
+      <div class="flow-arrow-label active">accept / reject + price</div>
+    </div>
+
+    <!-- Buyer -->
+    <div class="flow-node">
+      <div class="flow-box person">
+        <div class="flow-box-label">Buyer</div>
+        <div class="flow-box-title">Prediction market trader</div>
+        <div class="flow-box-desc">Posts request + budget. Never sees inside the TEE</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-caption">
+    <p>The buyer's agent and the seller's agent negotiate <strong>inside hardware-isolated memory</strong> that neither human — nor anyone else — can read. The seller's information is evaluated without being exposed. Arrow's paradox is sidestepped: evaluation happens before disclosure, not after.</p>
+    <p>The TEE signs every outcome with a key bound to its hardware identity. <strong>Anyone can verify that the code running inside is exactly the code they expect.</strong></p>
+  </div>
+</div>
+
+<!-- Slide 4: Settlement -->
+<div class="slide" id="s4">
+  <div class="label">Settlement</div>
+  <h2>The trade completes</h2>
+
+  <div class="flow-stage" style="gap: 0;">
+    <!-- Seller -->
+    <div class="flow-node">
+      <div class="flow-box person">
+        <div class="flow-box-label">Seller</div>
+        <div class="flow-box-title">OpenAI insider</div>
+        <div class="flow-box-desc">Claims USDC payment using TEE-signed outcome</div>
+      </div>
+      <div class="ok-badge">paid</div>
+    </div>
+
+    <!-- Arrow: seller ← escrow (USDC) -->
+    <div class="flow-connector">
+      <div class="flow-arrow" style="flex-direction: row-reverse;">
+        <div class="flow-arrow-line active"></div>
+        <div class="flow-arrow-head active" style="transform: rotate(180deg); border-left: none; border-right: 7px solid #2dd4bf60;"></div>
+      </div>
+      <div class="flow-arrow-label active" style="text-align:center;">USDC released</div>
+    </div>
+
+    <!-- TEE -->
+    <div class="flow-node">
+      <div class="flow-box tee">
+        <div class="flow-box-label">TEE outcome</div>
+        <div class="flow-box-title" style="margin-bottom:6px;">Buyer Agent: Verified ✓</div>
+        <div class="flow-box-desc" style="color:#a1a1aa;">"Information is consistent with the claim. DKIM proof is valid."</div>
+        <div class="tee-inner" style="margin-top:10px;">
+          <div class="tee-chip active">EIP-712 signed</div>
+          <div class="tee-chip active">Escrow unlocked</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arrow: TEE → buyer (info) -->
+    <div class="flow-connector">
+      <div class="flow-arrow">
+        <div class="flow-arrow-line active"></div>
+        <div class="flow-arrow-head active"></div>
+      </div>
+      <div class="flow-arrow-label active" style="text-align:center;">information revealed</div>
+    </div>
+
+    <!-- Buyer -->
+    <div class="flow-node">
+      <div class="flow-box person">
+        <div class="flow-box-label">Buyer</div>
+        <div class="flow-box-title">Prediction market trader</div>
+        <div class="flow-box-desc">Deposited USDC after agent's verdict. Now receives the information</div>
+      </div>
+      <div class="ok-badge">informed</div>
+    </div>
+  </div>
+
+  <div class="flow-caption">
+    <p>The buyer learned only one thing before paying: <strong>their own agent's verdict</strong>. The seller learned only one thing before revealing: <strong>that the escrow was funded</strong>. Neither party could defect. The trade that Arrow's paradox said couldn't happen — happened.</p>
+  </div>
+</div>
+
+<!-- Slide 5: Demo -->
+<div class="slide demo-slide" id="s5">
+  <div class="label">Live Demo</div>
+  <h2>The Full Flow</h2>
+  <div class="demo-strip">
+    <div class="demo-item">
+      <img src="img/01-browse.png" alt="Browse requests">
+      <div class="demo-caption">01 — Browse requests</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/02-wallet.png" alt="Connect wallet">
+      <div class="demo-caption">02 — Connect wallet (Base Sepolia)</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/03-new-request.png" alt="New request">
+      <div class="demo-caption">03 — Buyer posts a request + budget</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/04-seller-commit.png" alt="Seller commits">
+      <div class="demo-caption">04 — Seller commits info + .eml proof</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/05-email-proof.png" alt="Email proof">
+      <div class="demo-caption">05 — Proof: original email (DKIM intact)</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/06-negotiating.png" alt="Negotiating">
+      <div class="demo-caption">06 — Agents negotiating inside TEE</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/07-proposed-seller.png" alt="Proposed — seller view">
+      <div class="demo-caption">07 — Offer made, seller waiting</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/08-proposed-buyer.png" alt="Proposed — buyer view">
+      <div class="demo-caption">08 — Buyer sees price, deposits escrow</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/09-accepted.png" alt="Accepted">
+      <div class="demo-caption">09 — Accepted · TEE Verified · DKIM ✓</div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 6: Cryptographic Proofs -->
+<div class="slide" id="s6">
+  <div class="label">Proofs</div>
+  <h2>Cryptographic Proofs</h2>
+  <div class="two-col">
+    <div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">→</span>
+          <div class="step-text">The NDAI paper acknowledges that <strong>agents make errors</strong> (Section 4). How do you increase the buyer agent's confidence in the seller's claims?</div>
+        </div>
+        <div class="step">
+          <span class="step-num">→</span>
+          <div class="step-text">TBVH's answer: <strong>verifiable proof types</strong> that the TEE validates independently. Not claims from the seller, but system-verified evidence.</div>
+        </div>
+        <div class="step">
+          <span class="step-num">→</span>
+          <div class="step-text">This directly reduces the <strong class="teal">error term ε</strong> from the paper's agent model.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <h3 style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #2dd4bf; margin-bottom: 12px;">Today: DKIM Email Verification</h3>
+        <p style="font-size: 13px; color: #a1a1aa; line-height: 1.6; margin-bottom: 12px;">Sellers attach <span class="mono">.eml</span> files. The TEE verifies the cryptographic DKIM signature, confirming the email is genuine and unmodified.</p>
+        <p style="font-size: 13px; color: #a1a1aa; line-height: 1.6;">Both agents see the verified content. After the deal, email content is wiped from the TEE.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #71717a; margin-bottom: 8px;">Coming: zkTLS + more</h3>
+        <p style="font-size: 13px; color: #52525b; line-height: 1.6;">Extensible <span class="mono">proof_type</span> field designed from day one. zkTLS for web content verification, document attestation, and more.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 7: On-Chain Escrow -->
+<div class="slide" id="s7">
+  <div class="label">Settlement</div>
+  <h2>On-Chain Escrow</h2>
+  <div class="two-col">
+    <div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">→</span>
+          <div class="step-text"><strong>TBVHEscrow</strong> contract on Base Sepolia. Holds USDC deposits keyed by negotiation ID.</div>
+        </div>
+        <div class="step">
+          <span class="step-num">→</span>
+          <div class="step-text"><strong>EIP-712 typed signatures.</strong> The escrow only trusts the TEE signer. Key is derived from hardware, bound to the CVM identity.</div>
+        </div>
+        <div class="step">
+          <span class="step-num">→</span>
+          <div class="step-text"><strong>Attestation-verifiable.</strong> Anyone can confirm the exact code running in the TEE.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="path-card">
+          <h3>release()</h3>
+          <p>Seller claims payment with TEE-signed ACCEPT outcome</p>
+        </div>
+        <div class="path-card">
+          <h3>refundWithSig()</h3>
+          <p>Buyer gets immediate refund with TEE-signed REJECT outcome</p>
+        </div>
+        <div class="path-card">
+          <h3>refund()</h3>
+          <p>7-day timeout fallback. No signature needed. Funds are never locked permanently.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 8: tbvh-cli -->
+<div class="slide" id="s8">
+  <div class="label">CLI</div>
+  <h2>tbvh-cli: Agents Talking to Agents</h2>
+  <div class="two-col">
+    <div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">→</span>
+          <div class="step-text"><strong>No frontend needed.</strong> Full CLI client using bash, curl, and Foundry's cast. Designed for maximum security because frontends can be compromised.</div>
+        </div>
+        <div class="step">
+          <span class="step-num">→</span>
+          <div class="step-text"><strong>Programmatic access.</strong> Other AI agents can use tbvh-cli as a tool, enabling agents buying information from agents autonomously.</div>
+        </div>
+        <div class="step">
+          <span class="step-num">→</span>
+          <div class="step-text"><strong>Complete coverage.</strong> Auth (SIWE), create requests, commit as seller (text + email proof), stream negotiations, escrow deposit/release/refund.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="code">./auth.sh
+
+./buyer.sh create \
+  "Snowflake pricing" \
+  "Enterprise per-credit rates" \
+  50
+
+./stream.sh buyer $INSTANCE_ID
+
+./seller.sh commit-email \
+  $INSTANCE_ID \
+  "I have the pricing" \
+  ./contract.eml
+
+./escrow.sh deposit $NEG_ID 35
+./escrow.sh release $NEG_ID</div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 9: Technical Summary -->
+<div class="slide" id="s9">
+  <div class="label">Stack</div>
+  <h2>Technical Summary</h2>
+  <table>
+    <thead>
+      <tr><th>Component</th><th>Stack</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Backend</td><td>Node.js / Hono in Phala Cloud CVM (Intel TDX TEE)</td></tr>
+      <tr><td>AI Agents</td><td>DeepSeek V3 via Red Pill API, structured XML prompts</td></tr>
+      <tr><td>Contracts</td><td>Solidity (TBVHEscrow + MockUSDC) on Base Sepolia</td></tr>
+      <tr><td>Frontend</td><td>React / Vite / wagmi on Vercel</td></tr>
+      <tr><td>CLI</td><td>Bash + curl + Foundry cast</td></tr>
+      <tr><td>Proofs</td><td>DKIM email verification (extensible to zkTLS)</td></tr>
+      <tr><td>Escrow</td><td>EIP-712 signed outcomes, 3 settlement paths</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Slide 10: From Paper to Production -->
+<div class="slide" id="s10">
+  <div class="label">Learnings</div>
+  <h2>From Paper to Production</h2>
+  <div class="bullets">
+    <div class="bullet">
+      <div class="bullet-dot"></div>
+      <div class="bullet-text"><strong>Key derivation.</strong> Phala's TEE signer is bound to the CVM's app_id, not the Docker image hash. In-place code updates don't rotate keys. Only full reprovisioning does. The DStack docs and practical behavior diverge here.</div>
+    </div>
+    <div class="bullet">
+      <div class="bullet-dot"></div>
+      <div class="bullet-text"><strong>Prompt engineering is critical.</strong> Without explicit skepticism instructions and adversarial framing (the seller has a financial incentive to fabricate), the buyer agent accepts fabricated information. Structured XML prompts with proof verification status were needed to get reliable behavior.</div>
+    </div>
+    <div class="bullet">
+      <div class="bullet-dot"></div>
+      <div class="bullet-text"><strong>The paper's error model is real.</strong> Section 4 of the NDAI paper models agent errors and shows that budget caps and acceptance thresholds preserve efficiency gains. In practice, budget caps (max_payment) and cryptographic proof verification (DKIM) are the exact mitigations we implemented.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 11: What's Next -->
+<div class="slide" id="s11">
+  <div class="label">Roadmap</div>
+  <h2>What's Next</h2>
+  <div class="bullets">
+    <div class="bullet">
+      <div class="bullet-dot"></div>
+      <div class="bullet-text"><strong>zkTLS proof type.</strong> Verify web content (API responses, web pages) without trusting the seller. Extends the proof system beyond email.</div>
+    </div>
+    <div class="bullet">
+      <div class="bullet-dot"></div>
+      <div class="bullet-text"><strong>Production escrow on mainnet.</strong> Deploy to Base mainnet with real USDC. The same contracts, real money.</div>
+    </div>
+    <div class="bullet">
+      <div class="bullet-dot"></div>
+      <div class="bullet-text"><strong>Attestation-based signer rotation.</strong> Replace the owner-gated <span class="mono">setTeeSigner()</span> with on-chain verification that the new signer is backed by a valid TEE attestation.</div>
+    </div>
+    <div class="bullet">
+      <div class="bullet-dot"></div>
+      <div class="bullet-text"><strong>Multi-model support.</strong> Let buyers and sellers choose the AI model for their agents.</div>
+    </div>
+  </div>
+</div>
+
+<div class="counter"><span id="current">1</span> / <span id="total">11</span></div>
+<div class="nav-hint">← →</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, slides.length - 1));
+    slides[current].classList.add('active');
+    document.getElementById('current').textContent = current + 1;
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); show(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+    if (e.key === 'Home') { e.preventDefault(); show(0); }
+    if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+  });
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? show(current + 1) : show(current - 1); }
+  });
+</script>
+</body>
+</html>
