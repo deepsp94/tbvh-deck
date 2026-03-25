@@ -202,6 +202,47 @@
       font-style: italic;
       margin-top: 20px;
     }
+
+    /* Demo slide */
+    .demo-slide {
+      justify-content: flex-start;
+      padding-top: 48px;
+      overflow: hidden;
+    }
+    .demo-strip {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #27272a #09090b;
+    }
+    .demo-strip::-webkit-scrollbar { height: 4px; }
+    .demo-strip::-webkit-scrollbar-track { background: #09090b; }
+    .demo-strip::-webkit-scrollbar-thumb { background: #27272a; border-radius: 2px; }
+    .demo-item {
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .demo-item img {
+      height: calc(100vh - 200px);
+      max-height: 560px;
+      width: auto;
+      border-radius: 8px;
+      border: 1px solid #27272a80;
+      display: block;
+    }
+    .demo-caption {
+      font-size: 11px;
+      color: #52525b;
+      font-family: 'IBM Plex Mono', monospace;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -262,8 +303,52 @@
   </div>
 </div>
 
-<!-- Slide 4: Cryptographic Proofs -->
-<div class="slide" id="s4">
+<!-- Slide 4: Demo -->
+<div class="slide demo-slide" id="s4">
+  <div class="label">Live Demo</div>
+  <h2>The Full Flow</h2>
+  <div class="demo-strip">
+    <div class="demo-item">
+      <img src="img/01-browse.png" alt="Browse requests">
+      <div class="demo-caption">01 — Browse requests</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/02-wallet.png" alt="Connect wallet">
+      <div class="demo-caption">02 — Connect wallet (Base Sepolia)</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/03-new-request.png" alt="New request">
+      <div class="demo-caption">03 — Buyer posts a request + budget</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/04-seller-commit.png" alt="Seller commits">
+      <div class="demo-caption">04 — Seller commits info + .eml proof</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/05-email-proof.png" alt="Email proof">
+      <div class="demo-caption">05 — Proof: original email (DKIM intact)</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/06-negotiating.png" alt="Negotiating">
+      <div class="demo-caption">06 — Agents negotiating inside TEE</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/07-proposed-seller.png" alt="Proposed — seller view">
+      <div class="demo-caption">07 — Offer made, seller waiting</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/08-proposed-buyer.png" alt="Proposed — buyer view">
+      <div class="demo-caption">08 — Buyer sees price, deposits escrow</div>
+    </div>
+    <div class="demo-item">
+      <img src="img/09-accepted.png" alt="Accepted">
+      <div class="demo-caption">09 — Accepted · TEE Verified · DKIM ✓</div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 5: Cryptographic Proofs -->
+<div class="slide" id="s5">
   <div class="label">Proofs</div>
   <h2>Cryptographic Proofs</h2>
   <div class="two-col">
@@ -297,8 +382,8 @@
   </div>
 </div>
 
-<!-- Slide 5: On-Chain Settlement -->
-<div class="slide" id="s5">
+<!-- Slide 6: On-Chain Settlement -->
+<div class="slide" id="s6">
   <div class="label">Settlement</div>
   <h2>On-Chain Escrow</h2>
   <div class="two-col">
@@ -339,8 +424,8 @@
   </div>
 </div>
 
-<!-- Slide 6: tbvh-cli -->
-<div class="slide" id="s6">
+<!-- Slide 7: tbvh-cli -->
+<div class="slide" id="s7">
   <div class="label">CLI</div>
   <h2>tbvh-cli: Agents Talking to Agents</h2>
   <div class="two-col">
@@ -381,8 +466,8 @@
   </div>
 </div>
 
-<!-- Slide 7: Technical Summary -->
-<div class="slide" id="s7">
+<!-- Slide 8: Technical Summary -->
+<div class="slide" id="s8">
   <div class="label">Stack</div>
   <h2>Technical Summary</h2>
   <table>
@@ -401,8 +486,8 @@
   </table>
 </div>
 
-<!-- Slide 8: From Paper to Production -->
-<div class="slide" id="s8">
+<!-- Slide 9: From Paper to Production -->
+<div class="slide" id="s9">
   <div class="label">Learnings</div>
   <h2>From Paper to Production</h2>
   <div class="bullets">
@@ -421,8 +506,8 @@
   </div>
 </div>
 
-<!-- Slide 9: What's Next -->
-<div class="slide" id="s9">
+<!-- Slide 10: What's Next -->
+<div class="slide" id="s10">
   <div class="label">Roadmap</div>
   <h2>What's Next</h2>
   <div class="bullets">
@@ -445,7 +530,7 @@
   </div>
 </div>
 
-<div class="counter"><span id="current">1</span> / <span id="total">9</span></div>
+<div class="counter"><span id="current">1</span> / <span id="total">10</span></div>
 <div class="nav-hint">← →</div>
 
 <script>
