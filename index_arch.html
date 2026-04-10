@@ -156,12 +156,17 @@
       font-weight: 500;
     }
 
+    .paths {
+      display: flex;
+      gap: 24px;
+      max-width: 800px;
+    }
     .path-card {
+      flex: 1;
       background: #111113;
       border: 1px solid #27272a80;
       border-radius: 12px;
       padding: 20px;
-      margin-bottom: 12px;
     }
     .path-card h3 {
       font-family: 'IBM Plex Mono', monospace;
@@ -238,395 +243,68 @@
       font-family: 'IBM Plex Mono', monospace;
       text-align: center;
     }
-
-    /* ── Flowchart ── */
-    .flow-stage {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      margin: 8px auto 0;
-    }
-
-    .flow-node {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-
-    .flow-box {
-      border-radius: 12px;
-      padding: 18px 22px;
-      text-align: center;
-      width: 210px;
-    }
-
-    .flow-box.person {
-      background: #111113;
-      border: 1px solid #27272a;
-    }
-
-    .flow-box.tee {
-      background: #0d2420;
-      border: 1.5px solid #2dd4bf40;
-      width: 270px;
-      padding: 20px 24px;
-    }
-
-    .flow-box-label {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #52525b;
-      margin-bottom: 6px;
-    }
-
-    .flow-box-title {
-      font-size: 14px;
-      font-weight: 500;
-      color: #f4f4f5;
-      margin-bottom: 4px;
-    }
-
-    .flow-box-desc {
-      font-size: 12px;
-      color: #71717a;
-      line-height: 1.5;
-    }
-
-    .flow-box.tee .flow-box-label {
-      color: #2dd4bf80;
-    }
-
-    .flow-box.tee .flow-box-title {
-      color: #2dd4bf;
-    }
-
-    .tee-inner {
-      display: flex;
-      gap: 12px;
-      margin-top: 14px;
-      justify-content: center;
-    }
-
-    .tee-chip {
-      background: #111113;
-      border: 1px solid #27272a;
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 11px;
-      font-family: 'IBM Plex Mono', monospace;
-      color: #52525b;
-      text-align: center;
-    }
-
-    .tee-chip.active {
-      border-color: #2dd4bf30;
-      color: #a1a1aa;
-    }
-
-    /* arrows between nodes */
-    .flow-connector {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      padding: 0 12px;
-      flex-shrink: 0;
-    }
-
-    .flow-arrow {
-      display: flex;
-      align-items: center;
-      gap: 0;
-    }
-
-    .flow-arrow-line {
-      height: 1px;
-      width: 40px;
-      background: #27272a;
-    }
-
-    .flow-arrow-line.blocked {
-      background: #3f1010;
-      background: repeating-linear-gradient(90deg, #3f1515 0px, #3f1515 6px, transparent 6px, transparent 10px);
-    }
-
-    .flow-arrow-line.active {
-      background: #2dd4bf40;
-    }
-
-    .flow-arrow-head {
-      width: 0;
-      height: 0;
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid transparent;
-      border-left: 7px solid #27272a;
-    }
-
-    .flow-arrow-head.blocked {
-      border-left-color: #3f1515;
-    }
-
-    .flow-arrow-head.active {
-      border-left-color: #2dd4bf60;
-    }
-
-    .flow-arrow-label {
-      font-size: 10px;
-      font-family: 'IBM Plex Mono', monospace;
-      color: #3f3f46;
-      white-space: nowrap;
-    }
-
-    .flow-arrow-label.blocked {
-      color: #7f1d1d80;
-    }
-
-    .flow-arrow-label.active {
-      color: #2dd4bf60;
-    }
-
-    .flow-node-caption {
-      font-size: 12px;
-      color: #52525b;
-      text-align: center;
-      max-width: 180px;
-      line-height: 1.5;
-    }
-
-    .blocked-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: #7f1d1d20;
-      border: 1px solid #7f1d1d40;
-      border-radius: 6px;
-      padding: 3px 8px;
-      font-size: 11px;
-      font-family: 'IBM Plex Mono', monospace;
-      color: #ef4444;
-      margin-top: 4px;
-    }
-
-    .ok-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: #14532d20;
-      border: 1px solid #16a34a40;
-      border-radius: 6px;
-      padding: 3px 8px;
-      font-size: 11px;
-      font-family: 'IBM Plex Mono', monospace;
-      color: #4ade80;
-      margin-top: 4px;
-    }
-
-    .flow-caption {
-      margin-top: 32px;
-      max-width: 800px;
-    }
-
-    .flow-caption p {
-      font-size: 14px;
-      color: #71717a;
-      line-height: 1.7;
-    }
-
-    .flow-caption p + p {
-      margin-top: 10px;
-    }
-
-    .flow-caption strong {
-      color: #a1a1aa;
-    }
   </style>
 </head>
 <body>
 
 <!-- Slide 1: Title -->
 <div class="slide active" id="s1">
-  <div class="label">NDAI Hackathon · 2025</div>
-  <h1><span class="teal">TBVH</span></h1>
-  <p class="subtitle">To Be Verifiably Honest</p>
-  <p class="tagline">A working implementation of the NDAI paper's proof that TEEs and AI agents solve Arrow's Information Paradox — trustless trade in private information, settled on-chain.</p>
+  <h1>TBVH</h1>
+  <div class="subtitle">To Be Verifiably Honest</div>
+  <p class="tagline">
+    A trustless marketplace for buying and selling information.<br>
+    AI agents negotiate inside a TEE. Cryptographic proofs replace trust.<br>
+    On-chain escrow enforces the deal.
+  </p>
+  <p class="citation">Production implementation of the NDAI paper by Stephenson, Miller, Sun, Annem, Parikh (2025)</p>
 </div>
 
-<!-- Slide 2: The Problem -->
+<!-- Slide 2: Problem + Paper -->
 <div class="slide" id="s2">
   <div class="label">The Problem</div>
-  <h2>A trade that can't happen</h2>
-
-  <div class="flow-stage">
-    <!-- Seller -->
-    <div class="flow-node">
-      <div class="flow-box person">
-        <div class="flow-box-label">Seller</div>
-        <div class="flow-box-title">OpenAI whistleblower</div>
-        <div class="flow-box-desc">Has documented evidence that the company failed to delete user data it committed to deleting</div>
-      </div>
-      <div class="blocked-badge">can't reveal it publicly and still charge for it</div>
+  <h2>Arrow's Information Paradox</h2>
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">→</span>
+      <div class="step-text">You can't evaluate information without seeing it. Once you've seen it, why pay? This is <strong>Arrow's Information Paradox</strong> (1962), unsolved for 60 years.</div>
     </div>
-
-    <!-- Arrow: blocked -->
-    <div class="flow-connector">
-      <div class="flow-arrow">
-        <div class="flow-arrow-line blocked"></div>
-        <div class="flow-arrow-head blocked"></div>
-      </div>
-      <div class="flow-arrow-label blocked">Arrow's paradox</div>
+    <div class="step">
+      <span class="step-num">→</span>
+      <div class="step-text">From the NDAI paper: John Harrison built the Marine Chronometer and revealed it to claim his reward. Bureaucrats had no incentive to pay once they'd seen it. It took <strong>40 years and a king's intervention</strong> to get paid.</div>
     </div>
-
-    <!-- Buyer -->
-    <div class="flow-node">
-      <div class="flow-box person">
-        <div class="flow-box-label">Buyer</div>
-        <div class="flow-box-title">Prediction market trader</div>
-        <div class="flow-box-desc">Open position on an OpenAI data-compliance question. Will pay well for verified information</div>
-      </div>
-      <div class="blocked-badge">can't pay for information without seeing it first</div>
+    <div class="step">
+      <span class="step-num">→</span>
+      <div class="step-text">The NDAI paper proves that <strong>TEEs + AI agents eliminate this hold-up problem</strong>. Under the TEE arrangement, the unique equilibrium is full disclosure at an efficient price. Both parties are strictly better off.</div>
     </div>
-  </div>
-
-  <div class="flow-caption">
-    <p>If the seller reveals the information publicly, it becomes worthless — anyone can see it, there's no reason to pay. But the buyer can't evaluate the information without seeing it, and once they've seen it, there's no reason to pay.</p>
-    <p>This is <strong>Arrow's Information Paradox (1962)</strong>. The trade never happens, even though both sides would benefit.</p>
+    <div class="step">
+      <span class="step-num">→</span>
+      <div class="step-text"><strong>TBVH is the production system built on this theory.</strong></div>
+    </div>
   </div>
 </div>
 
-<!-- Slide 3: The TEE -->
+<!-- Slide 3: How TBVH Works -->
 <div class="slide" id="s3">
-  <div class="label">The Solution</div>
-  <h2>A sealed room in the middle</h2>
-
-  <div class="flow-stage" style="gap: 0;">
-    <!-- Seller -->
-    <div class="flow-node">
-      <div class="flow-box person">
-        <div class="flow-box-label">Seller</div>
-        <div class="flow-box-title">OpenAI whistleblower</div>
-        <div class="flow-box-desc">Commits encrypted information + DKIM proof</div>
-      </div>
+  <div class="label">Architecture</div>
+  <h2>How TBVH Works</h2>
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">01</span>
+      <div class="step-text"><strong>Post a request.</strong> The buyer describes the information they need and sets a budget in USDC. Sellers commit their information and optional cryptographic proof.</div>
     </div>
-
-    <!-- Arrow: seller → TEE -->
-    <div class="flow-connector">
-      <div class="flow-arrow">
-        <div class="flow-arrow-line active"></div>
-        <div class="flow-arrow-head active"></div>
-      </div>
-      <div class="flow-arrow-label active">encrypted commit</div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <div class="step-text"><strong>Agents negotiate inside the TEE.</strong> Each side has an AI agent. They negotiate inside a Phala Cloud CVM (Intel TDX), hardware-isolated memory that nobody can read. Neither human sees the conversation. The buyer only learns: accept or reject, at what price.</div>
     </div>
-
-    <!-- TEE -->
-    <div class="flow-node">
-      <div class="flow-box tee">
-        <div class="flow-box-label">Phala Cloud CVM · Intel TDX</div>
-        <div class="flow-box-title">Trusted Execution Environment</div>
-        <div class="tee-inner">
-          <div class="tee-chip active">Seller Agent</div>
-          <div class="tee-chip active">Buyer Agent</div>
-          <div class="tee-chip active">Escrow</div>
-        </div>
-      </div>
-      <div class="ok-badge">hardware-isolated · attestable</div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <div class="step-text"><strong>Settle on-chain.</strong> If accepted, the buyer deposits USDC into an escrow contract. The TEE verifies the deposit, signs the outcome (EIP-712), and reveals the seller's information. The seller claims payment with the TEE signature. If rejected, information is wiped and the buyer never sees it.</div>
     </div>
-
-    <!-- Arrow: TEE → buyer -->
-    <div class="flow-connector">
-      <div class="flow-arrow">
-        <div class="flow-arrow-line active"></div>
-        <div class="flow-arrow-head active"></div>
-      </div>
-      <div class="flow-arrow-label active">accept / reject + price</div>
-    </div>
-
-    <!-- Buyer -->
-    <div class="flow-node">
-      <div class="flow-box person">
-        <div class="flow-box-label">Buyer</div>
-        <div class="flow-box-title">Prediction market trader</div>
-        <div class="flow-box-desc">Posts request + budget. Never sees inside the TEE</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="flow-caption">
-    <p>The buyer's agent and the seller's agent negotiate <strong>inside hardware-isolated memory</strong> that neither human — nor anyone else — can read. The seller's information is evaluated without being exposed. Arrow's paradox is sidestepped: evaluation happens before disclosure, not after.</p>
-    <p>The TEE signs every outcome with a key bound to its hardware identity. <strong>Anyone can verify that the code running inside is exactly the code they expect.</strong></p>
   </div>
 </div>
 
-<!-- Slide 4: Settlement -->
-<div class="slide" id="s4">
-  <div class="label">Settlement</div>
-  <h2>The trade completes</h2>
-
-  <div class="flow-stage" style="gap: 0;">
-    <!-- Seller -->
-    <div class="flow-node">
-      <div class="flow-box person">
-        <div class="flow-box-label">Seller</div>
-        <div class="flow-box-title">OpenAI whistleblower</div>
-        <div class="flow-box-desc">Claims USDC payment using TEE-signed outcome</div>
-      </div>
-      <div class="ok-badge">paid</div>
-    </div>
-
-    <!-- Arrow: seller ← escrow (USDC) -->
-    <div class="flow-connector">
-      <div class="flow-arrow">
-        <div class="flow-arrow-head active" style="border-left: none; border-right: 7px solid #2dd4bf60;"></div>
-        <div class="flow-arrow-line active"></div>
-      </div>
-      <div class="flow-arrow-label active" style="text-align:center;">USDC released</div>
-    </div>
-
-    <!-- TEE -->
-    <div class="flow-node">
-      <div class="flow-box tee">
-        <div class="flow-box-label">TEE outcome</div>
-        <div class="flow-box-title" style="margin-bottom:6px;">Buyer Agent: Verified ✓</div>
-        <div class="flow-box-desc" style="color:#a1a1aa;">"Information is consistent with the claim. DKIM proof is valid."</div>
-        <div class="tee-inner" style="margin-top:10px;">
-          <div class="tee-chip active">EIP-712 signed</div>
-          <div class="tee-chip active">Escrow unlocked</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Arrow: TEE → buyer (info) -->
-    <div class="flow-connector">
-      <div class="flow-arrow">
-        <div class="flow-arrow-line active"></div>
-        <div class="flow-arrow-head active"></div>
-      </div>
-      <div class="flow-arrow-label active" style="text-align:center;">information revealed</div>
-    </div>
-
-    <!-- Buyer -->
-    <div class="flow-node">
-      <div class="flow-box person">
-        <div class="flow-box-label">Buyer</div>
-        <div class="flow-box-title">Prediction market trader</div>
-        <div class="flow-box-desc">Deposited USDC after agent's verdict. Now receives the information</div>
-      </div>
-      <div class="ok-badge">informed</div>
-    </div>
-  </div>
-
-  <div class="flow-caption">
-    <p>The buyer learned only one thing before paying: <strong>their own agent's verdict</strong>. The seller learned only one thing before revealing: <strong>that the escrow was funded</strong>. Neither party could defect. The trade that Arrow's paradox said couldn't happen — happened.</p>
-  </div>
-</div>
-
-<!-- Slide 5: Demo -->
-<div class="slide demo-slide" id="s5">
+<!-- Slide 4: Demo -->
+<div class="slide demo-slide" id="s4">
   <div class="label">Live Demo</div>
   <h2>The Full Flow</h2>
   <div class="demo-strip">
@@ -669,8 +347,56 @@
   </div>
 </div>
 
-<!-- Slide 6: Cryptographic Proofs -->
+<!-- Slide 5: Dual Use — Privacy -->
+<div class="slide" id="s5">
+  <div class="label">Dual Use</div>
+  <h2>The Uncomfortable Part</h2>
+  <p class="tagline" style="margin-bottom: 32px;">The same system that lets a consultant sell verified expertise also lets anyone buy a stranger's home address.</p>
+  <div style="max-width: 600px;">
+    <div style="background:#111113; border:1px solid #27272a80; border-radius:12px; padding:24px; margin-bottom:12px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+        <div>
+          <div style="font-size:11px; font-family:'IBM Plex Mono',monospace; color:#52525b; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Request #0x4f2a…</div>
+          <div style="font-size:16px; font-weight:500; color:#f4f4f5;">Home address for anantsp94@gmail.com</div>
+        </div>
+        <div style="background:#14532d30; border:1px solid #16a34a40; border-radius:8px; padding:6px 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:#4ade80; white-space:nowrap; margin-left:16px;">$2,000 USDC</div>
+      </div>
+      <p style="font-size:13px; color:#71717a; line-height:1.7; margin-bottom:16px;">I need the current residential address and phone number associated with this Gmail account. Name confirmation acceptable as partial proof. Full address with any corroborating documentation preferred. Negotiable on price for strong proof.</p>
+      <div style="display:flex; gap:8px;">
+        <div style="background:#27272a40; border-radius:6px; padding:4px 10px; font-size:11px; font-family:'IBM Plex Mono',monospace; color:#52525b;">open</div>
+        <div style="background:#27272a40; border-radius:6px; padding:4px 10px; font-size:11px; font-family:'IBM Plex Mono',monospace; color:#52525b;">3 sellers</div>
+      </div>
+    </div>
+    <p style="font-size:12px; color:#3f3f46; font-style:italic;">The TEE doesn't care what the information is. Neither party sees what the other committed before settlement. The system works exactly the same.</p>
+  </div>
+</div>
+
+<!-- Slide 6: Dual Use — Intelligence -->
 <div class="slide" id="s6">
+  <div class="label">Dual Use</div>
+  <h2>Or This</h2>
+  <p class="tagline" style="margin-bottom: 32px;">Classified intelligence. Insider trading. Advance warning of geopolitical events. If someone has it and someone else will pay for it, TBVH is infrastructure for the trade.</p>
+  <div style="max-width: 600px;">
+    <div style="background:#111113; border:1px solid #27272a80; border-radius:12px; padding:24px; margin-bottom:12px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+        <div>
+          <div style="font-size:11px; font-family:'IBM Plex Mono',monospace; color:#52525b; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Request #0x9c1e…</div>
+          <div style="font-size:16px; font-weight:500; color:#f4f4f5;">Will Iran attack Israel in the next 30 days?</div>
+        </div>
+        <div style="background:#14532d30; border:1px solid #16a34a40; border-radius:8px; padding:6px 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:#4ade80; white-space:nowrap; margin-left:16px;">$50,000 USDC</div>
+      </div>
+      <p style="font-size:13px; color:#71717a; line-height:1.7; margin-bottom:16px;">Looking for credible, non-public intelligence on Iranian military intent toward Israel over the next 30 days. News articles not useful. Interested in sourced assessments with some form of verifiable provenance — signals intercepts, government communications, insider access. Price is negotiable for strong proof.</p>
+      <div style="display:flex; gap:8px;">
+        <div style="background:#27272a40; border-radius:6px; padding:4px 10px; font-size:11px; font-family:'IBM Plex Mono',monospace; color:#52525b;">open</div>
+        <div style="background:#27272a40; border-radius:6px; padding:4px 10px; font-size:11px; font-family:'IBM Plex Mono',monospace; color:#52525b;">7 sellers</div>
+      </div>
+    </div>
+    <p style="font-size:12px; color:#3f3f46; font-style:italic;">The cryptographic guarantees that protect legitimate sellers also protect this one. Trustlessness is not neutrality.</p>
+  </div>
+</div>
+
+<!-- Slide 7: Cryptographic Proofs -->
+<div class="slide" id="s7">
   <div class="label">Proofs</div>
   <h2>Cryptographic Proofs</h2>
   <div class="two-col">
@@ -704,10 +430,10 @@
   </div>
 </div>
 
-<!-- Slide 7: On-Chain Escrow -->
-<div class="slide" id="s7">
+<!-- Slide 8: On-Chain Settlement -->
+<div class="slide" id="s8">
   <div class="label">Settlement</div>
-  <h2>Escrow Smart Contract</h2>
+  <h2>On-Chain Escrow</h2>
   <div class="two-col">
     <div>
       <div class="steps">
@@ -726,28 +452,30 @@
       </div>
     </div>
     <div>
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <div class="path-card">
-          <h3>release()</h3>
-          <p>Seller claims payment with TEE-signed ACCEPT outcome</p>
-        </div>
-        <div class="path-card">
-          <h3>refundWithSig()</h3>
-          <p>Buyer gets immediate refund with TEE-signed REJECT outcome</p>
-        </div>
-        <div class="path-card">
-          <h3>refund()</h3>
-          <p>7-day timeout fallback. No signature needed. Funds are never locked permanently.</p>
+      <div class="paths">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="path-card">
+            <h3>release()</h3>
+            <p>Seller claims payment with TEE-signed ACCEPT outcome</p>
+          </div>
+          <div class="path-card">
+            <h3>refundWithSig()</h3>
+            <p>Buyer gets immediate refund with TEE-signed REJECT outcome</p>
+          </div>
+          <div class="path-card">
+            <h3>refund()</h3>
+            <p>7-day timeout fallback. No signature needed. Funds are never locked permanently.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide 8: tbvh-cli -->
-<div class="slide" id="s8">
+<!-- Slide 9: tbvh-cli -->
+<div class="slide" id="s9">
   <div class="label">CLI</div>
-  <h2>tbvh-cli: Direct Interface with the TEE</h2>
+  <h2>tbvh-cli: Agents Talking to Agents</h2>
   <div class="two-col">
     <div>
       <div class="steps">
@@ -786,8 +514,8 @@
   </div>
 </div>
 
-<!-- Slide 9: Technical Summary -->
-<div class="slide" id="s9">
+<!-- Slide 10: Technical Summary -->
+<div class="slide" id="s10">
   <div class="label">Stack</div>
   <h2>Technical Summary</h2>
   <table>
@@ -806,8 +534,8 @@
   </table>
 </div>
 
-<!-- Slide 10: From Paper to Production -->
-<div class="slide" id="s10">
+<!-- Slide 11: From Paper to Production -->
+<div class="slide" id="s11">
   <div class="label">Learnings</div>
   <h2>From Paper to Production</h2>
   <div class="bullets">
@@ -826,8 +554,8 @@
   </div>
 </div>
 
-<!-- Slide 11: What's Next -->
-<div class="slide" id="s11">
+<!-- Slide 12: What's Next -->
+<div class="slide" id="s12">
   <div class="label">Roadmap</div>
   <h2>What's Next</h2>
   <div class="bullets">
@@ -850,7 +578,7 @@
   </div>
 </div>
 
-<div class="counter"><span id="current">1</span> / <span id="total">11</span></div>
+<div class="counter"><span id="current">1</span> / <span id="total">12</span></div>
 <div class="nav-hint">← →</div>
 
 <script>
